@@ -1,0 +1,368 @@
+﻿@model Webapp.Dtos.DashboardDto
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="~/Scripts/lib/font-awesome/css/all.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Dashboard home";
+}
+<nav aria-label="breadcrumb" style="background-color: #d8dce1; padding: .75rem 1rem; border-radius: .25rem">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Dashboard @ViewBag.ManagerYN.ToString()</li>
+    </ol>
+</nav>
+<div class="row no-gutters mt-2">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xl-4 col-md-5 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Assigned tasks</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AssociatedTasks</div>
+                                <div class="text-muted">Of which @Model.CompletedTasks are completed</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tasks fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col pt-4">
+                                <a href="/Dashboard/Create" class="btn btn-sm btn-primary shadow-sm">Assign Tasks</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-5 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Incomplete tasks</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(Model.InprogressTasks + Model.NotStarted)</div>
+                                <div class="text-muted">Of which @Model.InprogressTasks is in progress</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tasks fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col pt-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow my-4">
+    <div class="card-header">
+        Tasks
+    </div>
+    <div class="card-body">
+        <table id="tasks" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Subject</th>
+                    <th>Assigned to</th>
+                    <th>Due date</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            @*<tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Subject</th>
+                    <th>Assigned to</th>
+                    <th>Due date</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th>Manage</th>
+                </tr>
+            </tfoot>*@
+        </table>
+    </div>
+
+</div>
+
+<div class="modal fade" id="confirmCompleted" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mark as completed</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Ajax.BeginForm("MarkCompleted", FormMethod.Post, new AjaxOptions()
+            {
+                OnSuccess = "SuccessCompleted()"
+            }))
+            {
+                <div class="modal-body">
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.Hidden("TaskId")
+                    <div class="row mb-3">
+                        @Html.Label("Completed date", new { @class = "col-sm-5 col-form-label" })
+                        <div class="col-sm-7">
+                            @Html.TextBox("CompletedDate", null, new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessage("CompletedDate", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="confirm">Confirm</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Change status to In-progress</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.7/sorting/datetime-moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+
+            document.querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach(tooltip => {
+                    new bootstrap.Tooltip(tooltip)
+                })
+            $.fn.dataTable.moment('MM/DD/YYYY');
+            var table = new DataTable('#tasks', {
+                ajax: {
+                    "url": "/Dashboard/LoadTasks",
+                    "type": "GET",
+                    "dataType": "JSON"
+                },
+                columns: [
+                    { data: 'Id', name: 'Id' },
+                    { data: 'Subject', name: 'Subject' },
+                    { data: 'AssignedTo', name: 'AssignedTo' },
+                    { data: 'DateDue', name: 'DateDue' },
+                    { data: 'Status', name: 'Status' },
+                    { data: 'Priority', name: 'Priority' },
+                    { data: 'CompletedYN', name: 'CompletedYN' },
+                ],
+
+                columnDefs: [
+                    { responsivePriority: 1, targets: 1 },
+                    { responsivePriority: 2, targets: 3 },
+                    { responsivePriority: 3, targets: 6 },
+                    {
+                        target: 0,
+                        visible: false
+                    },
+                    {
+                        target: 5,
+                        visible: false
+                    },
+                    {
+                        target: 3,
+                        render: function (a, b, data, d) {
+                            if (data.DateDue != null) {
+                                moment.locale = "en-gb";
+                                data = moment(data.DateDue).format("L");
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        target: 4,
+                        render: function (a, b, data, d) {
+                            var res = ``;
+                            if (data.CompletedYN === true) {
+                                res += `<i class="fa-solid fa-flag-checkered fa-2x" style="color:green" data-bs-toggle="tooltip" data-bs-title="Default tooltip"></i>`
+                            } else {
+                                if (data.Status == 1) {
+                                    res += `<a href="#"  data-bs-toggle="modal" data-bs-target="#confirmUpdate" data-id = "` + data.Id + `"><i class="fa-regular fa-circle-play fa-2x" style="color:#696969"></i></a>`
+                                }
+                                if (data.Status == 2) {
+                                    res += `<i class="fa-regular fa-circle-play fa-2x" style="color:green"></i>`
+
+                                }
+                            }
+
+                            return res;
+                        }
+                    },
+                    {
+                        target: 1,
+                        render: function (a, b, data, d) {
+                            var res = ``;
+                            if (data.Priority == 1) {
+                                res = `<i class="fa-solid fa-triangle-exclamation" style="color:red"></i>`
+                            } else if (data.Priority == 2) {
+                                res = `<i class="fa-solid fa-exclamation" style="color:orange"></i>`
+                            } else if (data.Priority == 3) {
+                                res = `<i class="fa-solid fa-circle fa-2xs" style="color:green"></i>`
+                            } else if (data.Priority == 4) {
+                                res = `<i class="fa-solid fa-arrow-down text-info"></i>`
+                            }
+                            res += ` ` + data.Subject
+                            return res;
+                        }
+                    },
+                    {
+                        target: 6,
+                        render: function (a, b, data, d) {
+                            var url = ``;
+                            if (data.CompletedYN === false) {
+                                url += `<a href="#"  data-bs-toggle="modal" data-bs-target="#confirmCompleted" data-id = "` + data.Id + `"><span class="badge text-bg-primary">Mark completed</span></a>`;
+                                url += ` <a href="/Dashboard/Edit/` + data.Id + `"><span class="badge text-bg-info">Edit Task</span></a>`
+
+                            } else if (data.CompletedYN === true) {
+
+                                url += `</i> <a href="/Dashboard/Details/` + data.Id + `"><span class="badge text-bg-info">View details</span></a>`
+                            }
+                            url += ` <a href="#"  data-bs-toggle="modal" data-bs-target="#confirmDelete" data-id = "` + data.Id + `"><span class="badge text-bg-danger">Delete</span></a>`;
+                            return url;
+                        }
+                    }
+                ],
+                responsive: {
+                    details: {
+                        display: DataTable.Responsive.display.modal({
+                            header: function (row) {
+                                var data = row.data();
+                                return 'Details';
+                            }
+                        }),
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return table.column(i).visible() ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                    '<td>' + col.title + ':' + '</td> ' +
+                                    '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+            });
+
+            $('#confirmCompleted').on('show.bs.modal', function (e) {
+                unitId = $(e.relatedTarget).data('id');
+                $('#TaskId').val(unitId);
+            })
+
+            $('#confirmUpdate').on('show.bs.modal', function (e) {
+                unitId = $(e.relatedTarget).data('id');
+            })
+            $('#confirmUpdate').find('.modal-footer #confirm').on('click', function () {
+                var urlToDelete = `/Dashboard/ChangeToInprogress`;
+                $.ajax(urlToDelete, {
+                    type: "POST",
+                    data: {
+                        id: unitId,
+                        __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                    }
+                }).done(function (response) {
+                    $('#confirmUpdate').modal('hide');
+                    if (response.success) {
+                        runAlertSuccess("Tasks deleted")
+                        $('#tasks').DataTable().ajax.reload();
+                    } else {
+                        runAlertError("Operation failed, please try again later");
+                    }
+                }).fail(function (response) {
+                    $('#confirmUpdate').modal('hide');
+                    runAlertError("Operation failed, please try again later");
+                    $('#tasks').DataTable().ajax.reload();
+                })
+            });
+
+
+
+
+
+            $('#confirmDelete').on('show.bs.modal', function (e) {
+                unitId = $(e.relatedTarget).data('id');
+            })
+
+            $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
+                var urlToDelete = `/Dashboard/Delete`;
+                $.ajax(urlToDelete, {
+                    type: "POST",
+                    data: {
+                        id: unitId,
+                        __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                    }
+                }).done(function (response) {
+                    $('#confirmDelete').modal('hide');
+                    if (response.success) {
+                        runAlertSuccess("Tasks deleted")
+                        $('#tasks').DataTable().ajax.reload();
+                    } else {
+                        runAlertError("Operation failed, please try again later");
+                    }
+                }).fail(function (response) {
+                    $('#confirmDelete').modal('hide');
+                    runAlertError("Operation failed, please try again later");
+                    $('#tasks').DataTable().ajax.reload();
+                })
+            });
+        })
+        function SuccessCompleted() {
+            $('#confirmCompleted').modal('hide');
+            $('#tasks').DataTable().ajax.reload();
+            runAlertSuccess("Operation successful");
+        }
+    </script>
+}

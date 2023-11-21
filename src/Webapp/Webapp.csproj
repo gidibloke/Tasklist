@@ -1,0 +1,1341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC3C6711-26AB-46D4-BBAE-4247670A6221}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Webapp</RootNamespace>
+    <AssemblyName>Webapp</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44329</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper, Version=2.0.3.13, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bootstrapper.2.0.3.13\lib\Net40\Bootstrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper.UnityExtension, Version=2.0.3.13, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bootstrapper.Unity.2.0.3.13\lib\Net40\Bootstrapper.UnityExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.11.8.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Abstractions.5.11.7\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Container.5.11.11\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Mvc.5.11.1\lib\net47\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.4\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Facebook.4.2.2\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Google.4.2.2\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.4.2.2\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.2\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Attributes\FutureOnlyDates.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsermanagementController.cs" />
+    <Compile Include="Dtos\AutocompleteDto.cs" />
+    <Compile Include="Dtos\ChangeStatusDto.cs" />
+    <Compile Include="Dtos\DashboardDto.cs" />
+    <Compile Include="Dtos\MarkCompleted.cs" />
+    <Compile Include="Dtos\TaskIndexDto.cs" />
+    <Compile Include="Dtos\UploadDto.cs" />
+    <Compile Include="Dtos\UsersDto.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\MappingProfile.cs" />
+    <Compile Include="Helpers\Result.cs" />
+    <Compile Include="Interfaces\IFileUplaod.cs" />
+    <Compile Include="Interfaces\ITasks.cs" />
+    <Compile Include="LookupModels\Priority.cs" />
+    <Compile Include="LookupModels\TasksStatus.cs" />
+    <Compile Include="Migrations\202311190956313_Initial_Create.cs" />
+    <Compile Include="Migrations\202311190956313_Initial_Create.designer.cs">
+      <DependentUpon>202311190956313_Initial_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311201503501_TasksUpdate.cs" />
+    <Compile Include="Migrations\202311201503501_TasksUpdate.designer.cs">
+      <DependentUpon>202311201503501_TasksUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311201634193_TasksAddDueDate.cs" />
+    <Compile Include="Migrations\202311201634193_TasksAddDueDate.designer.cs">
+      <DependentUpon>202311201634193_TasksAddDueDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311202216042_AddedPriority.cs" />
+    <Compile Include="Migrations\202311202216042_AddedPriority.designer.cs">
+      <DependentUpon>202311202216042_AddedPriority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Tasks.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\TasksRepository.cs" />
+    <Compile Include="Services\FileUploadService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\TasksViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\unnamed.jpg" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="libman.json" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.bootstrap.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.bootstrap4.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.foundation.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.foundation.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.jqueryui.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.material.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.material.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.semanticui.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.semanticui.min.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.uikit.css" />
+    <Content Include="Scripts\lib\datatables\css\dataTables.uikit.min.css" />
+    <Content Include="Scripts\lib\datatables\css\jquery.dataTables.css" />
+    <Content Include="Scripts\lib\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\lib\datatables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\lib\datatables\css\jquery.dataTables_themeroller.min.css" />
+    <Content Include="Scripts\lib\datatables\images\sort_asc.png" />
+    <Content Include="Scripts\lib\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\lib\datatables\images\sort_both.png" />
+    <Content Include="Scripts\lib\datatables\images\sort_desc.png" />
+    <Content Include="Scripts\lib\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.bootstrap.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.dataTables.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.dataTables.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.foundation.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.foundation.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.jqueryui.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.material.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.material.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.semanticui.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.uikit.js" />
+    <Content Include="Scripts\lib\datatables\js\dataTables.uikit.min.js" />
+    <Content Include="Scripts\lib\datatables\js\jquery.dataTables.js" />
+    <Content Include="Scripts\lib\datatables\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\lib\font-awesome\css\all.css" />
+    <Content Include="Scripts\lib\font-awesome\css\all.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\brands.css" />
+    <Content Include="Scripts\lib\font-awesome\css\brands.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\fontawesome.css" />
+    <Content Include="Scripts\lib\font-awesome\css\fontawesome.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\regular.css" />
+    <Content Include="Scripts\lib\font-awesome\css\regular.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\solid.css" />
+    <Content Include="Scripts\lib\font-awesome\css\solid.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\svg-with-js.css" />
+    <Content Include="Scripts\lib\font-awesome\css\svg-with-js.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v4-font-face.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v4-font-face.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v4-shims.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v4-shims.min.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v5-font-face.css" />
+    <Content Include="Scripts\lib\font-awesome\css\v5-font-face.min.css" />
+    <Content Include="Scripts\lib\font-awesome\js\all.js" />
+    <Content Include="Scripts\lib\font-awesome\js\all.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\brands.js" />
+    <Content Include="Scripts\lib\font-awesome\js\brands.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\conflict-detection.js" />
+    <Content Include="Scripts\lib\font-awesome\js\conflict-detection.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\fontawesome.js" />
+    <Content Include="Scripts\lib\font-awesome\js\fontawesome.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\regular.js" />
+    <Content Include="Scripts\lib\font-awesome\js\regular.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\solid.js" />
+    <Content Include="Scripts\lib\font-awesome\js\solid.min.js" />
+    <Content Include="Scripts\lib\font-awesome\js\v4-shims.js" />
+    <Content Include="Scripts\lib\font-awesome\js\v4-shims.min.js" />
+    <Content Include="Scripts\lib\font-awesome\sprites\brands.svg" />
+    <Content Include="Scripts\lib\font-awesome\sprites\regular.svg" />
+    <Content Include="Scripts\lib\font-awesome\sprites\solid.svg" />
+    <Content Include="Scripts\lib\jquery-toast-plugin\jquery.toast.css" />
+    <Content Include="Scripts\lib\jquery-toast-plugin\jquery.toast.js" />
+    <Content Include="Scripts\lib\jquery-toast-plugin\jquery.toast.min.css" />
+    <Content Include="Scripts\lib\jquery-toast-plugin\jquery.toast.min.js" />
+    <Content Include="Scripts\lib\jqueryui\jquery-ui.js" />
+    <Content Include="Scripts\lib\jqueryui\jquery-ui.min.js" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\base\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_diagonals-thick_8_333333_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_glass_40_111111_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_glass_55_1c1c1c_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_highlight-hard_100_f9f9f9_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_highlight-hard_40_aaaaaa_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_highlight-soft_50_aaaaaa_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_inset-hard_45_cd0a0a_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-bg_inset-hard_55_ffeb80_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_4ca300_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_bbbbbb_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_ededed_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_ffcf29_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\black-tie\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_diagonals-thick_75_f3d8d8_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_dots-small_65_a6a6a6_2x2.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_glass_55_fbf8ee_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_highlight-hard_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_highlight-hard_100_f6f6f6_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-bg_highlight-soft_15_cc0000_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-icons_004276_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\blitzer\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\cupertino\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_highlight-hard_20_0972a5_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_highlight-soft_33_003147_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_highlight-soft_35_222222_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_highlight-soft_44_444444_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-bg_loop_25_000000_21x21.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dark-hive\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_diagonals-thick_15_0b3e6f_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_dots-medium_30_0b58a2_4x4.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_dots-small_20_333333_2x2.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_dots-small_30_a32d00_2x2.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_dots-small_40_00498f_2x2.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-bg_gloss-wave_20_111111_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-icons_00498f_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-icons_98d2fb_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-icons_9ccdfc_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\dot-luv\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-bg_gloss-wave_30_3d3644_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-bg_highlight-soft_100_dcd9de_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-bg_highlight-soft_100_eae6ea_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-bg_highlight-soft_25_30273a_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-bg_highlight-soft_45_5f5964_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_734d99_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_8d78a5_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_a8a3ae_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_ebccce_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\eggplant\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_diagonals-small_25_c5ddfc_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_diagonals-thick_20_e69700_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_diagonals-thick_22_1484e6_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_diagonals-thick_26_2293f7_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_highlight-soft_100_f9f9f9_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-bg_inset-hard_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-icons_0a82eb_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-icons_0b54d5_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-icons_5fa5e3_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-icons_fcdd4a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\excite-bike\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-bg_highlight-soft_25_0073ea_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-bg_highlight-soft_50_dddddd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-icons_0073ea_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-icons_666666_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-icons_ff0084_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\flick\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_diagonals-small_40_db4865_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_diagonals-small_50_93c3cd_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_diagonals-small_50_ff3853_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_diagonals-small_75_ccd232_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_dots-medium_80_ffff38_4x4.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_dots-small_35_35414f_2x2.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-bg_white-lines_85_f7f7ba_40x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_88a206_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_c02669_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_e1e463_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_ffeb33_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\hot-sneaks\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_glass_100_f5f0e5_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_glass_25_cb842e_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_glass_70_ede4d4_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_highlight-hard_100_f4f0ec_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_highlight-hard_65_fee4bd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_highlight-hard_75_f5f5b5_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-bg_inset-soft_100_f4f0ec_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_c47a23_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_cb672b_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_f08000_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_f35f07_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_ff7519_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\humanity\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_diagonals-small_0_aaaaaa_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_diagonals-thick_15_444444_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_diagonals-thick_95_ffdc2e_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_glass_55_fbf5d0_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_highlight-hard_30_285c00_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_highlight-soft_33_3a8104_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_highlight-soft_50_4eb305_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_highlight-soft_60_4ca20b_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-bg_inset-soft_10_285c00_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-icons_4eb305_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-icons_72b42d_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\le-frog\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_glass_15_5f391b_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_gloss-wave_20_1c160d_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_gloss-wave_25_453326_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_gloss-wave_30_44372c_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_highlight-soft_20_201913_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_highlight-soft_20_619226_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-bg_inset-soft_10_201913_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_9bcc60_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_add978_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_e3ddc9_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_f1fd86_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\mint-choc\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-bg_glass_100_f8f8f8_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-bg_glass_35_dddddd_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-bg_glass_60_eeeeee_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-bg_inset-hard_75_999999_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-bg_inset-soft_50_c9c9c9_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-icons_3383bb_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-icons_70b2e1_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-icons_999999_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\images\ui-icons_fbc856_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\overcast\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_10_eceadf_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_15_eceadf_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_15_f7f3de_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_15_ffffff_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_65_654b24_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-bg_fine-grain_68_b83400_60x60.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_3572ac_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_8c291d_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_b83400_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\pepper-grinder\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\redmond\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\smoothness\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_glass_55_fcf0ba_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_gloss-wave_100_ece8da_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-hard_100_f5f3e5_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-hard_100_fafaf4_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-hard_15_459e00_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-hard_95_cccccc_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-soft_25_67b021_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_highlight-soft_95_ffedad_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-bg_inset-soft_15_2b2922_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_808080_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_847e71_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_8DC262_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_eeeeee_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\south-street\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_0078ae_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_056b93_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_f5e175_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\start\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\sunny\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_10_4f4221_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_20_372806_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_25_675423_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_25_d5ac5d_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_8_261803_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_diamond_8_443113_10x8.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-bg_highlight-hard_65_fee4bd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_070603_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_e8e2b5_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_e9cd86_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_efec9f_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_f2ec64_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_f9f2bd_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\images\ui-icons_ff7519_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\swanky-purse\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_diagonals-small_50_262626_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_glass_40_0a0a0a_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_glass_55_f1fbe5_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_glass_60_000000_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_gloss-wave_55_000000_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_gloss-wave_85_9fda58_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-bg_gloss-wave_95_f6ecd5_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_000000_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_1f1f1f_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_9fda58_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_b8ec79_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\trontastic\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-darkness\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\ui-lightness\theme.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_gloss-wave_16_121212_500x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_highlight-hard_15_888888_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_highlight-hard_55_555555_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_highlight-soft_35_adadad_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_highlight-soft_60_dddddd_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-bg_inset-soft_15_121212_1x100.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_666666_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_aaaaaa_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_c98000_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\images\ui-icons_f29a00_256x240.png" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\jquery-ui.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\theme.css" />
+    <Content Include="Scripts\lib\jqueryui\themes\vader\theme.min.css" />
+    <Content Include="Scripts\lib\moment.js\locale\af.js" />
+    <Content Include="Scripts\lib\moment.js\locale\af.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-dz.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-dz.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-kw.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-kw.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-ly.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-ly.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-ma.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-ma.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-sa.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-sa.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-tn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar-tn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ar.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\az.js" />
+    <Content Include="Scripts\lib\moment.js\locale\az.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\be.js" />
+    <Content Include="Scripts\lib\moment.js\locale\be.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bg.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bg.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bm.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bm.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bn-bd.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bn-bd.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\br.js" />
+    <Content Include="Scripts\lib\moment.js\locale\br.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bs.js" />
+    <Content Include="Scripts\lib\moment.js\locale\bs.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ca.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ca.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cs.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cs.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cv.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cv.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cy.js" />
+    <Content Include="Scripts\lib\moment.js\locale\cy.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\da.js" />
+    <Content Include="Scripts\lib\moment.js\locale\da.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de-at.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de-at.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de-ch.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de-ch.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de.js" />
+    <Content Include="Scripts\lib\moment.js\locale\de.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\dv.js" />
+    <Content Include="Scripts\lib\moment.js\locale\dv.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\el.js" />
+    <Content Include="Scripts\lib\moment.js\locale\el.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-au.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-au.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-ca.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-ca.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-gb.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-gb.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-ie.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-ie.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-il.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-il.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-in.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-in.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-nz.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-nz.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-sg.js" />
+    <Content Include="Scripts\lib\moment.js\locale\en-sg.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\eo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\eo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-do.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-do.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-mx.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-mx.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-us.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es-us.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es.js" />
+    <Content Include="Scripts\lib\moment.js\locale\es.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\et.js" />
+    <Content Include="Scripts\lib\moment.js\locale\et.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\eu.js" />
+    <Content Include="Scripts\lib\moment.js\locale\eu.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fa.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fa.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fi.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fi.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fil.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fil.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr-ca.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr-ca.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr-ch.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr-ch.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fr.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fy.js" />
+    <Content Include="Scripts\lib\moment.js\locale\fy.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ga.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ga.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gd.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gd.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gom-deva.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gom-deva.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gom-latn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gom-latn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gu.js" />
+    <Content Include="Scripts\lib\moment.js\locale\gu.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\he.js" />
+    <Content Include="Scripts\lib\moment.js\locale\he.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hi.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hi.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hr.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hr.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hu.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hu.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hy-am.js" />
+    <Content Include="Scripts\lib\moment.js\locale\hy-am.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\id.js" />
+    <Content Include="Scripts\lib\moment.js\locale\id.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\is.js" />
+    <Content Include="Scripts\lib\moment.js\locale\is.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\it-ch.js" />
+    <Content Include="Scripts\lib\moment.js\locale\it-ch.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\it.js" />
+    <Content Include="Scripts\lib\moment.js\locale\it.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ja.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ja.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\jv.js" />
+    <Content Include="Scripts\lib\moment.js\locale\jv.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ka.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ka.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\kk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\kk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\km.js" />
+    <Content Include="Scripts\lib\moment.js\locale\km.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\kn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\kn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ko.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ko.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ku.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ku.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ky.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ky.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lb.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lb.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lt.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lt.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lv.js" />
+    <Content Include="Scripts\lib\moment.js\locale\lv.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\me.js" />
+    <Content Include="Scripts\lib\moment.js\locale\me.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mi.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mi.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ml.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ml.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mr.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mr.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ms-my.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ms-my.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ms.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ms.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mt.js" />
+    <Content Include="Scripts\lib\moment.js\locale\mt.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\my.js" />
+    <Content Include="Scripts\lib\moment.js\locale\my.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nb.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nb.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ne.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ne.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nl-be.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nl-be.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\nn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\oc-lnc.js" />
+    <Content Include="Scripts\lib\moment.js\locale\oc-lnc.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pa-in.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pa-in.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pt-br.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pt-br.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pt.js" />
+    <Content Include="Scripts\lib\moment.js\locale\pt.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ro.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ro.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ru.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ru.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sd.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sd.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\se.js" />
+    <Content Include="Scripts\lib\moment.js\locale\se.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\si.js" />
+    <Content Include="Scripts\lib\moment.js\locale\si.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sq.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sq.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sr-cyrl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sr-cyrl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sr.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sr.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ss.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ss.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sv.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sv.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sw.js" />
+    <Content Include="Scripts\lib\moment.js\locale\sw.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ta.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ta.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\te.js" />
+    <Content Include="Scripts\lib\moment.js\locale\te.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tet.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tet.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tg.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tg.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\th.js" />
+    <Content Include="Scripts\lib\moment.js\locale\th.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tl-ph.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tl-ph.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tlh.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tlh.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tr.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tr.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzl.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzl.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzm-latn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzm-latn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzm.js" />
+    <Content Include="Scripts\lib\moment.js\locale\tzm.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ug-cn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ug-cn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ur.js" />
+    <Content Include="Scripts\lib\moment.js\locale\ur.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uz-latn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uz-latn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uz.js" />
+    <Content Include="Scripts\lib\moment.js\locale\uz.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\vi.js" />
+    <Content Include="Scripts\lib\moment.js\locale\vi.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\x-pseudo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\x-pseudo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\yo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\yo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-cn.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-cn.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-hk.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-hk.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-mo.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-mo.min.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-tw.js" />
+    <Content Include="Scripts\lib\moment.js\locale\zh-tw.min.js" />
+    <Content Include="Scripts\lib\moment.js\moment-with-locales.js" />
+    <Content Include="Scripts\lib\moment.js\moment-with-locales.min.js" />
+    <Content Include="Scripts\lib\moment.js\moment.js" />
+    <Content Include="Scripts\lib\moment.js\moment.min.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\enums.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\enums.min.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-base.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-base.min.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-lite.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-lite.min.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper.js" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\createPopper.js" />
+    <Content Include="Scripts\lib\popper.js\esm\createPopper.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\contains.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\contains.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getBoundingClientRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getClippingRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getClippingRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getCompositeRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getCompositeRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getComputedStyle.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getComputedStyle.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getDocumentElement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getDocumentElement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getDocumentRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getDocumentRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getHTMLElementScroll.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getHTMLElementScroll.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getLayoutRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getLayoutRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getNodeName.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getNodeName.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getNodeScroll.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getNodeScroll.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getOffsetParent.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getOffsetParent.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getParentNode.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getParentNode.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getScrollParent.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getScrollParent.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getViewportRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getViewportRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindow.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindow.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindowScroll.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindowScroll.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindowScrollBarX.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\getWindowScrollBarX.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\instanceOf.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\instanceOf.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isLayoutViewport.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isLayoutViewport.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isScrollParent.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isScrollParent.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isTableElement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\isTableElement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\listScrollParents.js" />
+    <Content Include="Scripts\lib\popper.js\esm\dom-utils\listScrollParents.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\enums.js" />
+    <Content Include="Scripts\lib\popper.js\esm\enums.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\index.js" />
+    <Content Include="Scripts\lib\popper.js\esm\index.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\applyStyles.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\applyStyles.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\arrow.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\arrow.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\computeStyles.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\computeStyles.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\eventListeners.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\eventListeners.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\flip.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\flip.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\hide.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\hide.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\index.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\index.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\offset.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\offset.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\popperOffsets.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\popperOffsets.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\lib\popper.js\esm\modifiers\preventOverflow.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper-base.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper-base.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper-lite.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper-lite.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper.js" />
+    <Content Include="Scripts\lib\popper.js\esm\popper.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\types.js" />
+    <Content Include="Scripts\lib\popper.js\esm\types.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\computeAutoPlacement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\computeOffsets.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\computeOffsets.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\debounce.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\debounce.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\detectOverflow.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\detectOverflow.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\expandToHashMap.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\expandToHashMap.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getAltAxis.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getAltAxis.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getAltLen.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getAltLen.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getBasePlacement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getBasePlacement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getFreshSideObject.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getFreshSideObject.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getMainAxisFromPlacement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getMainAxisFromPlacement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getOppositePlacement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getOppositeVariationPlacement.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getOppositeVariationPlacement.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getVariation.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\getVariation.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\math.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\math.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\mergeByName.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\mergeByName.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\mergePaddingObject.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\mergePaddingObject.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\orderModifiers.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\orderModifiers.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\rectToClientRect.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\rectToClientRect.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\uniqueBy.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\uniqueBy.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\userAgent.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\userAgent.min.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\within.js" />
+    <Content Include="Scripts\lib\popper.js\esm\utils\within.min.js" />
+    <Content Include="Scripts\lib\popper.js\umd\enums.js" />
+    <Content Include="Scripts\lib\popper.js\umd\enums.min.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-base.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-base.min.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-lite.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-lite.min.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper.js" />
+    <Content Include="Scripts\lib\popper.js\umd\popper.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Scripts\lib\popper.js\cjs\enums.js.map" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-base.js.map" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper-lite.js.map" />
+    <Content Include="Scripts\lib\popper.js\cjs\popper.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\enums.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\enums.min.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-base.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-base.min.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-lite.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper-lite.min.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper.js.map" />
+    <Content Include="Scripts\lib\popper.js\umd\popper.min.js.map" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="Scripts\lib\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Scripts\lib\moment.js\moment-with-locales.min.js.map" />
+    <Content Include="Scripts\lib\moment.js\moment.min.js.map" />
+    <Content Include="Views\Usermanagement\CreateUser.cshtml" />
+    <Content Include="Views\Usermanagement\Index.cshtml" />
+    <Content Include="Views\Shared\_Alert.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\Create.cshtml" />
+    <Content Include="Views\Dashboard\Edit.cshtml" />
+    <Content Include="Views\Dashboard\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Profilepictures\" />
+    <Folder Include="Content\ProfilePictures\" />
+    <Folder Include="Views\Tasks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202311190956313_Initial_Create.resx">
+      <DependentUpon>202311190956313_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311201503501_TasksUpdate.resx">
+      <DependentUpon>202311201503501_TasksUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311201634193_TasksAddDueDate.resx">
+      <DependentUpon>202311201634193_TasksAddDueDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311202216042_AddedPriority.resx">
+      <DependentUpon>202311202216042_AddedPriority.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50227</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44329/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

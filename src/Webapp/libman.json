@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.21",
+      "destination": "Scripts/lib/datatables/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "popper.js@2.11.8",
+      "destination": "Scripts/lib/popper.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "font-awesome@6.4.2",
+      "destination": "Scripts/lib/font-awesome/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "popper.js@2.11.8",
+      "destination": "Scripts/lib/popper.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-toast-plugin@1.3.2",
+      "destination": "Scripts/lib/jquery-toast-plugin/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jqueryui@1.13.2",
+      "destination": "Scripts/lib/jqueryui/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "moment.js@2.29.4",
+      "destination": "Scripts/lib/moment.js/"
+    }
+  ]
+}

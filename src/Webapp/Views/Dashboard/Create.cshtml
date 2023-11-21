@@ -1,0 +1,126 @@
+﻿
+@model Webapp.ViewModels.TasksViewModel
+
+@{
+    ViewBag.Title = "Data management";
+}
+<link href="~/Scripts/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<nav aria-label="breadcrumb" style="background-color: #d8dce1; padding: .75rem 1rem; border-radius: .25rem">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Tasks</li>
+    </ol>
+</nav>
+
+<main aria-labelledby="title">
+    <div class="card shadow">
+        <div class="card-header">
+            <h3>Add tasks</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Create", "Dashboard", FormMethod.Post, new { role = "form", @class = "p-lg-5 p-sm-1" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.AssignedToUserId)
+                @Html.HiddenFor(x => x.AssigningUserId)
+                @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.Subject, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(m => m.Description, 10, 10, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                @*<div class="row mb-3">
+                    @Html.LabelFor(m => m.TaskStatusId, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.TaskStatusId, Model.Status, "Select status", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.TaskStatusId, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>*@
+                
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.PriorityId, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.PriorityId, Model.Priority, "Select priority", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.PriorityId, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.AutoCompletebox, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.AutoCompletebox, new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.DateDue, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.DateDue, new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(model => model.DateDue, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Assign Task</button>
+            }
+        </div>
+    </div>
+
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#AutoCompletebox").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Dashboard/AutoComplete",
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                console.log(val);
+                                return {
+                                    label: val.FullName,
+                                    value: val.FullName,
+                                    AutoCompletebox: val.FullName,
+                                    Id: val.UserId
+                                }
+                            }))
+                        }
+                    })
+                },
+                change: function (event, ui) {
+                    if (ui.item == null) {
+                        $("#AutoCompletebox").val("");
+                        $("#AutoCompletebox").focus();
+
+                    }
+                },
+                select: function (event, ui) {
+                    //AssignedToUserId
+                    $('#AssignedToUserId').val(ui.item.Id);
+
+                }
+            });
+        });
+    </script>
+}

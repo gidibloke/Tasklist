@@ -1,0 +1,190 @@
+﻿<link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="~/Scripts/lib/font-awesome/css/all.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "User management";
+}
+
+<nav aria-label="breadcrumb" style="background-color: #d8dce1; padding: .75rem 1rem; border-radius: .25rem">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">User management</li>
+    </ol>
+</nav>
+
+<div class="row no-gutters mt-5">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xl-4 col-md-5 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Active users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col pt-4">
+                                <a href="/Account/Register" class="btn btn-outline-primary btn-sm">Create new user</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card shadow my-4">
+    <div class="card-header">
+        Users
+    </div>
+    <div class="card-body">
+        <table id="users" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Job title</th>
+                    <th>Role</th>
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Job title</th>
+                    <th>Role</th>
+                    <th>Manage</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="confirmDisable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Disable user</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script>
+        new DataTable('#users', {
+            ajax: {
+                "url": "/Usermanagement/LoadUsers",
+                "type": "GET",
+                "dataType": "JSON"
+            },
+            columns: [
+                { data: 'Email', name: 'Email' },
+                { data: 'FullName', name: 'FullName' },
+                { data: 'JobTitle', name: 'JobTitle' },
+                { data: 'RoleName', name: 'RoleName' },
+                { data: 'UserId', name: 'UserId' },
+                { data: 'IsEnabled', name: 'IsEnabled' },
+                { data: 'EmailConfirmed', name: 'EmailConfirmed' },
+
+            ],
+            columnDefs: [
+                {
+                    target: 5,
+                    visible: false
+                },
+                {
+                    target: 6,
+                    visible: false
+                },
+                {
+                    target: 0,
+                    render: function (a, b, data, d) {
+                        var url = ``;
+                        if (data.EmailConfirmed === true) {
+                            url = `<div class=""><span class="badge text-bg-success">Confirmed</span></div>`
+                        } else {
+                            url = `<a href="#" data-toggle="modal" data-target="#confirmResend" data-id = "` + data.UserId + `"><span class="badge text-bg-danger">Resend confirmation</span></a>`
+                        }
+                        data = `<div class="d-flex flex-column">
+                                          <div class="">`+ data.Email + `</div>` + url + `
+                                        </div>`
+                        return data;
+                    }
+                },
+                {
+                    target: 4,
+                    render: function (a, b, data, d) {
+                        var url = ``;
+                        if (data.IsEnabled === true) {
+                            url += `<a href="#"  data-bs-toggle="modal" data-bs-target="#confirmDisable" data-id = "` + data.UserId + `"><span class="badge text-bg-danger">Disable User</span></a>`
+                        }
+                        else {
+                            url += `<a href="#"  data-bs-toggle="modal" data-bs-target="#confirmEnable" data-id = "` + data.UserId + `"><span class="badge text-bg-success">Enable User</span></a>`
+                        }
+                        url += ` <a href="/UserManagement/Edit/` + data.UserId + `"><span class="badge text-bg-info">Edit User</span></a>`
+                        return url;
+                    }
+                }
+            ]
+
+        });
+        var unitId = 0;
+        $('#confirmDisable').on('show.bs.modal', function (e) {
+            unitId = $(e.relatedTarget).data('id');
+            console.log(unitId);
+        })
+
+        $('#confirmDisable').find('.modal-footer #confirm').on('click', function () {
+            $('#confirmDisable').modal('hide');
+            runAlertSuccess("This is a test toast")
+            console.log(unitId)
+        });
+
+        function runAlertSuccess(message) {
+            if (typeof message === 'undefined') {
+                message = 'Operation successful'
+            }
+            $.toast({
+                heading: 'Success',
+                text: message,
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-right'
+            })
+        }
+        function runAlertError(message) {
+            if (typeof message === 'undefined') {
+                message = 'Operation failed. Contact trial team or try again later'
+            }
+            $.toast({
+                heading: 'Error',
+                text: message,
+                showHideTransition: 'slide',
+                icon: 'error',
+                position: 'top-right'
+            })
+        }
+    </script>
+}

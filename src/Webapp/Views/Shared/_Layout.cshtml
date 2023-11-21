@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Scripts/lib/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @*<a class="navbar-brand" href="/">
+                <img src="~/Content/assets/unnamed.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top"/>
+                Tasks
+            </a>*@
+            @Html.ActionLink("Tasks", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li>@Html.ActionLink("User management", "Index", "Usermanagement", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content mt-5">
+        @Html.Partial("_Alert")
+        @RenderBody()
+        @*<hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/lib/jquery-toast-plugin/jquery.toast.js"></script>
+    <script src="~/Scripts/lib/jqueryui/jquery-ui.js"></script>
+    <script>
+        function runAlertSuccess(message) {
+            if (typeof message === 'undefined') {
+                message = 'Operation successful'
+            }
+            $.toast({
+                heading: 'Success',
+                text: message,
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-right'
+            })
+        }
+        function runAlertError(message) {
+            if (typeof message === 'undefined') {
+                message = 'Operation failed. Contact trial team or try again later'
+            }
+            $.toast({
+                heading: 'Error',
+                text: message,
+                showHideTransition: 'slide',
+                icon: 'error',
+                position: 'top-right'
+            })
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

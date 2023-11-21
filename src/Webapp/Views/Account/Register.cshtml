@@ -1,0 +1,58 @@
+﻿@model Webapp.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Add user";
+}
+
+<main aria-labelledby="title">
+    <div class="card shadow">
+        <div class="card-header">
+            <h3>Add user</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", @class = "p-lg-5 p-sm-1" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.JobTitle, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.RoleName, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.RoleName, Model.Roles, "Select one", new { @class = "form-select" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Add User</button>
+            }
+        </div>
+    </div>
+
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
