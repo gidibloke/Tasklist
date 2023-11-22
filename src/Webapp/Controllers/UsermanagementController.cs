@@ -108,5 +108,11 @@ namespace Webapp.Controllers
                 return Json(new { success = false, message = "Operation failed" }, JsonRequestBehavior.AllowGet);
 
         }
+
+        public async Task<ActionResult> Edit(string userId)
+        {
+            //Not implemented on purpose. Focusing on the core features of the applcation
+            return View();
+        }
     }
 }

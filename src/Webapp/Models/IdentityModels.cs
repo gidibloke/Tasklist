@@ -26,6 +26,7 @@ namespace Webapp.Models
             {
                 new Claim("Fullname", $"{FirstName} {LastName}"),
                 new Claim("JobTitle", $"{JobTitle}"),
+                new Claim("ProfilePicture", $"{ProfilePicture}"),
             };
             userIdentity.AddClaims(claims);
             return userIdentity;

@@ -69,6 +69,9 @@ namespace Webapp.Controllers
             var uploadPic = await _fileUplaod.FileUpload(upload.Picture, userId);
             if(uploadPic != string.Empty)
             {
+                var user = await UserManager.FindByIdAsync(userId);
+                user.ProfilePicture = uploadPic;
+                await UserManager.UpdateAsync(user);
                 TempData["success"] = "Upload successful";
                 return RedirectToAction(nameof(Index));
             }

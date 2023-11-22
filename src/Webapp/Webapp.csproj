@@ -209,6 +209,7 @@
     <Compile Include="Dtos\TaskIndexDto.cs" />
     <Compile Include="Dtos\UploadDto.cs" />
     <Compile Include="Dtos\UsersDto.cs" />
+    <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +265,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ProfilePictures\user.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1254,10 +1256,10 @@
     <Content Include="Views\Dashboard\Create.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
     <Content Include="Views\Dashboard\Details.cshtml" />
+    <Content Include="Views\Usermanagement\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Profilepictures\" />
-    <Folder Include="Content\ProfilePictures\" />
     <Folder Include="Views\Tasks\" />
   </ItemGroup>
   <ItemGroup>

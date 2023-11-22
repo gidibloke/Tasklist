@@ -20,7 +20,11 @@ namespace Webapp.Services
         }
         public async Task<string> FileUpload(HttpPostedFileBase file, string UserId)
         {
-            var user = await _context.Users.Where(x => x.Id == UserId).SingleOrDefaultAsync();
+            if(file.ContentLength < 3000000)
+            {
+                return string.Empty;
+            }
+                var user = await _context.Users.Where(x => x.Id == UserId).SingleOrDefaultAsync();
             if (user != null)
             {
                 string[] ext = { ".jpeg", ".png", ".jpg" };
@@ -32,9 +36,11 @@ namespace Webapp.Services
                 //string userFolder = Path.Combine(HttpRuntime.AppDomainAppPath, "Content", "Profilepictures", UserId);
                 //var files = Directory.GetFiles(userFolder);
                 //foreach
+                var homeDir = Path.Combine(HttpRuntime.AppDomainAppPath, "Content", "Profilepictures", UserId, UserId);
+                if (!Directory.Exists(homeDir)) { Directory.CreateDirectory(homeDir); };
                 string appdatafolder = Path.Combine(HttpRuntime.AppDomainAppPath, "Content", "Profilepictures", UserId, UserId + fileExt);
                 file.SaveAs(appdatafolder);
-                return file.FileName;
+                return Path.GetFileName(appdatafolder);
             }
             return string.Empty;
         }

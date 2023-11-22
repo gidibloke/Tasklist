@@ -20,11 +20,11 @@
         protected override void Seed(Webapp.Models.ApplicationDbContext context)
         {
             context.Roles.AddOrUpdate(x => x.Id, new IdentityRole { Name = "Manager" }, new IdentityRole { Name = "Employee" });
+            var store = new UserStore<ApplicationUser>(context);
+            var manager = new UserManager<ApplicationUser>(store);
             if (!context.Users.Any())
             {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser
+                var user1 = new ApplicationUser
                 {
                     FirstName = "Satoshi",
                     LastName = "Nakamoto",
@@ -33,9 +33,50 @@
                     Email = "satoshi@bitcoin.com",
                     UserName = "satoshi@bitcoin.com"
                 };
-                manager.Create(user, "Password1");
-                manager.AddToRole(user.Id, "Manager");
+                manager.Create(user1, "Password1");
+                manager.AddToRole(user1.Id, "Manager");
+
+                var user2 = new ApplicationUser
+                {
+                    FirstName = "Captain",
+                    LastName = "America",
+                    JobTitle = "Partime avenger",
+                    IsEnabled = true,
+                    Email = "steverogers@avengers.com",
+                    UserName = "steverogers@avengers.com"
+                };
+                manager.Create(user2, "Password1");
+                manager.AddToRole(user2.Id, "Manager");
+
+                var user3 = new ApplicationUser
+                {
+                    FirstName = "Albus",
+                    LastName = "Dumbuldore",
+                    JobTitle = "Order founder",
+                    IsEnabled = true,
+                    Email = "albus@hogworts.com",
+                    UserName = "albus@hogworts.com"
+                };
+                manager.Create(user3, "Password1");
+                manager.AddToRole(user3.Id, "Employee");
+
+
+                var user4 = new ApplicationUser
+                {
+                    FirstName = "Sheldon",
+                    LastName = "Copper",
+                    JobTitle = "Theoretical phycist",
+                    IsEnabled = true,
+                    Email = "sheldon@mit.com",
+                    UserName = "sheldon@mit.com"
+                };
+                manager.Create(user3, "Password1");
+                manager.AddToRole(user3.Id, "Employee");
+
             };
+            
+
+
             if (!context.TasksStatuses.Any())
             {
                 var status = new List<TasksStatus>

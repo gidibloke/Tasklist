@@ -204,10 +204,25 @@ namespace Webapp.Controllers
             _tasks.UpdateTasks(result);
             var success = await _tasks.SaveChangesAsync();
             return Json(new { success = success }, JsonRequestBehavior.AllowGet);
-
         }
 
-
+        public async Task<ActionResult> Details(string id)
+        {
+            var guid = Guid.TryParse(id, out var tasksId);
+            if (!guid)
+            {
+                TempData["failure"] = "Invalid link";
+                return RedirectToAction(nameof(Index));
+            }
+            var model = await _tasks.GetTaskAsync(tasksId);
+            if (!model.IsSuccess)
+            {
+                TempData["failure"] = model.ErrorMessage;
+                return RedirectToAction(nameof(Index));
+            }
+            _tasks.Populatedropdown(model.Data);
+            return View(model.Data);
+        }
     }
 }
 
